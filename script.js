@@ -38,5 +38,15 @@ document.querySelector('#submit').addEventListener('click', (e) => {
 document.addEventListener('click', (e) => {
   if(e.target.dataset.id) {
     console.log(`clicked id ${e.target.dataset.id}`)
+    e.preventDefault()
+    fetch(`http://localhost:3000/${e.target.dataset.id}`, {
+    method: 'DELETE',
+    headers: {"Content-Type": "application/json"},
+    redirect: 'follow'
+  })
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .then(render())
+    .catch(error => console.log('error', error));
   }
 })
