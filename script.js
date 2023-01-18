@@ -1,52 +1,53 @@
+import { addItem, deleteItem } from "./list.js"
 
-function render() {
+document.querySelector('#submit').addEventListener('click', (e) => {
+  e.preventDefault()
+  addItem()
+});
+
+document.addEventListener('click', (e) => {
+  if(e.target.dataset.id) {
+    console.log(`clicked id ${e.target.dataset.id}`)
+    e.preventDefault()
+    deleteItem(e)
+  }
+})
+
+
+
+let categoriesArray = ['Amazon', 'Asian', 'Baking', 'Beer/Wine', 'Canned', 'Cereal', 'Cleaning', 'Condiments', 'Cookies', 'Crackers', 'Dairy', 'Drinks', 'Frozen', 'Fruit', 'Grains', 'Household', 'Paper Products', 'Pasta', 'Pets', 'Pharmacy', 'Produce', 'Snacks', 'Spices', 'Staples', 'Supplies', 'Urgent']
+
+export function render() {
   fetch('http://localhost:3000') 
   .then(res => res.json())
   .then(data => {
-    let listHtml = ''
+    document.getElementById('list').innerHTML = getListHtml(data);
+  })
+}
+
+function getListHtml(data) {
+  let listHtml = ''
     data.map(item => {
       listHtml += `
       <h2>${item.category}, ${item.item}</h2>
       <button data-id="${item.id}">delete</button>
       `
     })
-    document.getElementById('list').innerHTML = listHtml;
+    return listHtml;
+}
+
+function renderOptions() {
+  document.getElementById('categoryInput').innerHTML = getOptionsHtml();
+}
+
+function getOptionsHtml() {
+  let optionsHtml = '<option></option>';
+  categoriesArray.map(option => {
+    optionsHtml += `
+    <option value=${option} name=${option}>${option}</option>
+    `
   })
 }
 
-
-document.querySelector('#submit').addEventListener('click', (e) => {
-    e.preventDefault()
-    fetch("http://localhost:3000", {
-    method: 'POST',
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({
-      "item": itemInput.value,
-      "category": categoryInput.value
-    }),
-    redirect: 'follow'
-  })
-    .then(response => response.text())
-    .then(result => console.log(result))
-    .then(render())
-    .catch(error => console.log('error', error));
-  });
-
-  render()
-
-
-document.addEventListener('click', (e) => {
-  if(e.target.dataset.id) {
-    console.log(`clicked id ${e.target.dataset.id}`)
-    e.preventDefault()
-    fetch(`http://localhost:3000/${e.target.dataset.id}`, {
-    method: 'DELETE',
-    headers: {"Content-Type": "application/json"},
-    redirect: 'follow'
-  })
-    .then(response => response.text())
-    .then(result => console.log(result))
-    .then(render())
-    .catch(error => console.log('error', error));
-  }
-})
+render()
+renderOptions()
