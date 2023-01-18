@@ -28,8 +28,11 @@ function getListHtml(data) {
   let listHtml = ''
     data.map(item => {
       listHtml += `
-      <h2>${item.category}, ${item.item}</h2>
-      <button data-id="${item.id}">delete</button>
+      <div class="item">
+        <p>${item.category}</p> 
+        <h2>${item.item}</h2>
+        <button data-id="${item.id}">X</button>
+      </div>
       `
     })
     return listHtml;

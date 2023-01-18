@@ -8,11 +8,10 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  background: rgb(63,94,251);
-  background: linear-gradient(42deg, rgba(63,94,251,1) 0%, rgba(166,70,252,0.5256696428571428) 100%);
-  background-size: cover;
   height: 100vh;
+  width: 100hv;
   box-sizing: border-box;
+  background-color: #6184D8;
 }
 
 header {
@@ -37,25 +36,69 @@ header h1 {
 input, select {
   font-family: inherit;
   width: 50%;
-  font-size: 1.5rem;
+  max-width: 500px;
+  font-size: 1rem;
   padding: 0.5em;
   border-radius: 5px;
   outline: none;
   border: none;
-  
 }
 
 header button {
   font-family: inherit;
   font-weight: bold;
   width: 25%;
+  max-width: 250px;
   padding: 0.5em 1.5em;
-  font-size: 1.5rem;
+  font-size: 1rem;
   border-radius: 5px;
   border: none;
   background-color: #6184D8;
   color: white;
-
 }
 
+button:focus, 
+input:focus,
+select:focus {
+  border: 1px solid #50C5B7;
+}
 
+input:hover,
+select:hover {
+  background-color: lightgray;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
+  padding: 1.5em;
+  height: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 1fr 2fr .5fr;
+  align-items: center;
+  background-color: #533A71;
+  color: white;
+  border-radius: 5px;
+  padding: .5em 1em;
+  font-size: .75rem;
+}
+
+.item button {
+  width: 2em;
+  margin-left: auto;
+  background-color: white;
+  color: #6184D8;
+  font-weight: bold;
+  font-family: inherit;
+  font-size: .5rem;
+  padding: 0.5em;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
