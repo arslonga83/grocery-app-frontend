@@ -3,6 +3,7 @@ import { addItem, deleteItem } from "./list.js"
 document.querySelector('#submit').addEventListener('click', (e) => {
   e.preventDefault()
   addItem()
+  document.getElementById('itemInput').value = ''
 });
 
 document.addEventListener('click', (e) => {
@@ -12,8 +13,6 @@ document.addEventListener('click', (e) => {
     deleteItem(e)
   }
 })
-
-
 
 let categoriesArray = ['Amazon', 'Asian', 'Baking', 'Beer/Wine', 'Canned', 'Cereal', 'Cleaning', 'Condiments', 'Cookies', 'Crackers', 'Dairy', 'Drinks', 'Frozen', 'Fruit', 'Grains', 'Household', 'Paper Products', 'Pasta', 'Pets', 'Pharmacy', 'Produce', 'Snacks', 'Spices', 'Staples', 'Supplies', 'Urgent']
 
@@ -47,6 +46,7 @@ function getOptionsHtml() {
     <option value=${option} name=${option}>${option}</option>
     `
   })
+  return optionsHtml;
 }
 
 render()
