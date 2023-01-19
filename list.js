@@ -1,7 +1,7 @@
 import { render } from "./script.js";
 
 export function addItem() {
-  fetch("http://localhost:3000", {
+  fetch("https://grocery-list-fny0.onrender.com", {
   method: 'POST',
   headers: {"Content-Type": "application/json"},
   body: JSON.stringify({
@@ -17,7 +17,7 @@ export function addItem() {
 }
 
 export function deleteItem(e) {
-  fetch(`http://localhost:3000/${e.target.dataset.id}`, {
+  fetch(`https://grocery-list-fny0.onrender.com/${e.target.dataset.id}`, {
     method: 'DELETE',
     headers: {"Content-Type": "application/json"},
     redirect: 'follow'

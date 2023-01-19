@@ -17,10 +17,11 @@ document.addEventListener('click', (e) => {
 let categoriesArray = ['Amazon', 'Asian', 'Baking', 'Beer/Wine', 'Canned', 'Cereal', 'Cleaning', 'Condiments', 'Cookies', 'Crackers', 'Dairy', 'Drinks', 'Frozen', 'Fruit', 'Grains', 'Household', 'Paper Products', 'Pasta', 'Pets', 'Pharmacy', 'Produce', 'Snacks', 'Spices', 'Staples', 'Supplies', 'Urgent']
 
 export function render() {
-  fetch('http://localhost:3000') 
+  fetch('https://grocery-list-fny0.onrender.com') 
   .then(res => res.json())
   .then(data => {
     document.getElementById('list').innerHTML = getListHtml(data);
+    console.log(data)
   })
 }
 
